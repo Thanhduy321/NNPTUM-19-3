@@ -1,0 +1,35 @@
+let mongoose = require('mongoose');
+
+let inventorySchema = mongoose.Schema({
+    product: {
+        type: mongoose.Types.ObjectId,
+        ref: 'product',
+        required: true,
+        unique: true
+    },
+    stock: {
+        type: Number,
+        min: 0,
+        default: 0
+    },
+    reserved: {
+        type: Number,
+        min: 0,
+        default: 0
+    },
+    soldCount: {
+        type: Number,
+        min: 0,
+        default: 0
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    }
+})
+
+module.exports = new mongoose.model('inventory', inventorySchema)
